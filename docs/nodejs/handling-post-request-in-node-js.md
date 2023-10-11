@@ -20,6 +20,8 @@ const server = http.createServer((request, response) => {
   let buffer = '';
   request.on('data', chunk => {
     buffer += chunk;
+
+//here buffer is not a buffer type variable, it is a string due to the concatenation..if you insert into a filewriteFile(file,buffer,), the file will be corrupted, chunks.push(chunk); workds and does create a buffer type variable.
   });
   request.on('end', () => {
     const responseString = `Received string ${buffer}`;
